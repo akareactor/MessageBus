@@ -1,0 +1,13 @@
+{
+  "name": "com.kulibinspace.messagebus",
+  "version": "0.0.1",
+  "displayName": "Message bus",
+  "description": "This is a simple messaging facility, based on UnityEvents.",
+  "unity": "2021.3",
+  "unityRelease": "0",
+  "author": {
+    "name": "Kulibin.Space",
+    "email": "akareactor@mail.ru",
+    "url": "https://www.kulibin.space"
+  }
+}
