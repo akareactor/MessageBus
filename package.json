@@ -1,6 +1,6 @@
 {
   "name": "com.kulibinspace.messagebus",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "displayName": "Message bus",
   "description": "This is a simple messaging facility, based on UnityEvents.",
   "author": {
