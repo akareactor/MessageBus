@@ -7,7 +7,7 @@ namespace Kulibin.Space.MessageBus {
 	public class CollisionControl : MonoBehaviour {
 
 		private void OnCollisionEnter (Collision collision) {
-			print("Collision moment message added!");
+			print("Collision moment message sent to bus!");
 			MessageBus.AddMessage("Collision!");
 		}
 
