@@ -59,10 +59,18 @@ namespace Kulibin.Space.MessageBus {
         }
 
         void Awake () {
-            // регистрация сообщений в базовой шине
+            // регистрация сообщений в базовой шине, в PlayMode
             foreach (Entry item in entries) {
-                //item.gameMessage.Subscribe(); //item.gameMessage.message += item.Message; // подписка на сообщение
-                //Magistral.Register(item.gameMessage);
+                if (item.gameMessage is GameMessage) {
+                    GameMessage gm = item.gameMessage as GameMessage;
+                    SignalEventItem eventItem = item.eventItem as SignalEventItem;
+                    gm.Subscribe(eventItem.Message);
+                } else if (item.gameMessage is GameMessageString) {
+                    GameMessageString gm = item.gameMessage as GameMessageString;
+                    StringEventItem eventItem = item.eventItem as StringEventItem;
+                    gm.Subscribe(eventItem.Message);
+                }
+                Magistral.Register(item.gameMessage);
             }
         }
 

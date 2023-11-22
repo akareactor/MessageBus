@@ -269,24 +269,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entries:
   - eventItem:
-      rid: 4789732647497105412
-    gameMessage: {fileID: 11400000, guid: 60885c6495f561a4bad2e520693f4f23, type: 2}
-  - eventItem:
       rid: 4789732647497105414
     gameMessage: {fileID: 11400000, guid: 5f7c51ebf8192ea4794fb1c01c367e29, type: 2}
+  - eventItem:
+      rid: 4789732652016992256
+    gameMessage: {fileID: 11400000, guid: 60885c6495f561a4bad2e520693f4f23, type: 2}
   references:
     version: 2
     RefIds:
-    - rid: 4789732647497105412
-      type: {class: SignalEventItem, ns: Kulibin.Space.MessageBus, asm: Space.Kulibin.MessageBus}
-      data:
-        broadcast:
-          rid: 4789732647497105413
-    - rid: 4789732647497105413
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
     - rid: 4789732647497105414
       type: {class: StringEventItem, ns: Kulibin.Space.MessageBus, asm: Space.Kulibin.MessageBus}
       data:
@@ -296,7 +286,41 @@ MonoBehaviour:
       type: {class: StringEvent, ns: Kulibin.Space.MessageBus, asm: Space.Kulibin.MessageBus}
       data:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 72568523}
+            m_TargetAssemblyTypeName: Kulibin.Space.MessageBusDemo.SimpleLog, MessageBusDemo
+            m_MethodName: Write
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    - rid: 4789732652016992256
+      type: {class: SignalEventItem, ns: Kulibin.Space.MessageBus, asm: Space.Kulibin.MessageBus}
+      data:
+        broadcast:
+          rid: 4789732652016992257
+    - rid: 4789732652016992257
+      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
+      data:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 72568523}
+            m_TargetAssemblyTypeName: Kulibin.Space.MessageBusDemo.SimpleLog, MessageBusDemo
+            m_MethodName: Write
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: Game Over!
+              m_BoolArgument: 0
+            m_CallState: 2
 --- !u!1 &605985653
 GameObject:
   m_ObjectHideFlags: 0

@@ -47,8 +47,10 @@ namespace Kulibin.Space.MessageBus {
     }
 
     public abstract class AbstractGameMessage : ScriptableObject {
+
         public string messageName; // имя конкретного сообщения, используется для авторегистрации под кастомный метод CustomMessageBus
-        public abstract void Subscribe ();
+
+        //public abstract void Subscribe ();
 
         public static AbstractGameMessage[] GetAllInstances () {
             string[] guids = AssetDatabase.FindAssets("t:" + typeof(AbstractGameMessage).Name); //FindAssets uses tags check documentation for more info

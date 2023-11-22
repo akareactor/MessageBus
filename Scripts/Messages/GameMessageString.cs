@@ -11,8 +11,12 @@ namespace Kulibin.Space.MessageBus {
             if (message != null) message(text);
         }
 
-        public override void Subscribe () {
-            
+        public void Subscribe (TextMessage method) {
+            message += method;
+        }
+
+        public void Unsubscribe (TextMessage method) {
+            message -= method;
         }
 
     }
