@@ -6,9 +6,12 @@ namespace Kulibin.Space.MessageBus {
 
 	public class CollisionControl : MonoBehaviour {
 
+		public GameMessage gms;
+
 		private void OnCollisionEnter (Collision collision) {
 			print("Collision moment message sent to bus!");
-			MessageBus.AddMessage("Collision!");
+			//MessageBus.AddMessage("Collision!");
+			gms.Invoke();
 		}
 
 	}
