@@ -55,13 +55,13 @@ namespace UnityEditor.EventSystems {
                 if (eventItemProperty != null) {
                     SerializedProperty callbacksProperty = eventItemProperty.FindPropertyRelative("broadcast");
                     if (callbacksProperty != null) {
-                        m_EventIDName.text = m_EventTypes[i].text;
+                        m_EventIDName.text = agm[i].name;
                         EditorGUILayout.PropertyField(callbacksProperty, m_EventIDName);
                     } else {
                         EditorGUILayout.LabelField(new GUIContent("callbacksProperty null"));
                     }
                 } else {
-                    EditorGUILayout.LabelField(new GUIContent("eventItemProperty null" + delegateProperty.propertyPath));
+                    EditorGUILayout.LabelField(new GUIContent("eventItemProperty null " + delegateProperty.propertyPath));
                 }
                 Rect callbackRect = GUILayoutUtility.GetLastRect();
                 Rect removeButtonPos = new Rect(callbackRect.xMax - removeButtonSize.x - 8, callbackRect.y + 1, removeButtonSize.x, removeButtonSize.y);
@@ -73,7 +73,7 @@ namespace UnityEditor.EventSystems {
             if (toBeRemovedEntry > -1) {
                 RemoveEntry(toBeRemovedEntry);
             }
-            // разработка меню добавления
+            // кнопка меню добавления
             Rect btPosition = GUILayoutUtility.GetRect(m_AddButonContent, GUI.skin.button);
             const float addButonWidth = 200f;
             btPosition.x = btPosition.x + (btPosition.width - addButonWidth) / 2;

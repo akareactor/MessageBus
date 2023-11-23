@@ -12,6 +12,10 @@ namespace Kulibin.Space.MessageBus.Demo {
             Magistral.InvokeMessageByName("GameOver");
         }
 
+        public void TextMessage (string s) {
+            Magistral.InvokeMessageByName("Text", s);
+        }
+
     }
 
 }

@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac428dfe4c7eb704d829087c1159b120, type: 3}
-  m_Name: Message object
+  m_Script: {fileID: 11500000, guid: d87cd28cb3170e54d983c42619984630, type: 3}
+  m_Name: Text
   m_EditorClassIdentifier: 
-  messageName: GameOver
+  messageName: Text

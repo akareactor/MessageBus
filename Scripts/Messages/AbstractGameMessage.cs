@@ -19,14 +19,14 @@ namespace Kulibin.Space.MessageBus {
 		}
 	}
 
-    public delegate void EventAction ();
-    public delegate void TextMessage (string s); // простое текстовое сообщение, используется где угодно
+// по каждому делегату в скрипт сообщения
 	public delegate void ObjectAction (GameObject g);
 	public delegate void ComponentAction (MonoBehaviour mb);
 	public delegate void BoolAction (bool flag); // 19:29 29.08.2021 понадобилось дл¤ делегата PlayerController.OnSniperMode (там вход и выход, экономи¤)
 	public delegate void FloatAction (float val);
 	public delegate void AdvancedMessage (TypedMessage m);
 
+// по каждому событию в слушателя
     [System.Serializable]
 	public class IntEvent : UnityEvent<int> {}
 
@@ -34,23 +34,12 @@ namespace Kulibin.Space.MessageBus {
 	public class BoolEvent : UnityEvent<bool> {}
 
     [System.Serializable]
-	public class StringEvent : UnityEvent<string> {}
-
-    [System.Serializable]
 	public class FloatEvent : UnityEvent<float> {}
 
     [System.Serializable]
 	public class ObjectEvent : UnityEvent<GameObject> {}
 
-    class SampleClass<T> {
-        void Swap(ref T lhs, ref T rhs) { }
-    }
-
     public abstract class AbstractGameMessage : ScriptableObject {
-
-        public string messageName; // имя конкретного сообщения, используется для авторегистрации под кастомный метод CustomMessageBus
-
-        //public abstract void Subscribe ();
 
         public static AbstractGameMessage[] GetAllInstances () {
             string[] guids = AssetDatabase.FindAssets("t:" + typeof(AbstractGameMessage).Name); //FindAssets uses tags check documentation for more info

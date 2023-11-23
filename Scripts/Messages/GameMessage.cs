@@ -1,6 +1,8 @@
 using UnityEngine;
 
-namespace Kulibin.Space.MessageBus {
+namespace Kulibin.Space.MessageBus { 
+
+    public delegate void EventAction ();
 
     //[CreateAssetMenu]
     [CreateAssetMenu(fileName = "Message object", menuName = "ScriptableObjects/Message object")]

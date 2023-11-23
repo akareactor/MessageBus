@@ -16,19 +16,13 @@ namespace Kulibin.Space.MessageBus {
         }
 
         public static void InvokeMessageByName (string messageName) {
-            AbstractGameMessage agm = messages.Find(x => x.messageName == messageName);
-            if (agm != null && agm is GameMessage) {
-                GameMessage gm = (GameMessage)agm; 
-                gm.Invoke();
-            } 
+            AbstractGameMessage agm = messages.Find(x => x.name == messageName);
+            if (agm != null && agm is GameMessage) ((GameMessage)agm).Invoke();
         }
 
         public static void InvokeMessageByName (string messageName, string text) {
-            AbstractGameMessage agm = messages.Find(x => x.messageName == messageName);
-            if (agm != null && agm is GameMessageString) {
-                GameMessageString gm = (GameMessageString)agm; 
-                gm.Invoke(text);
-            } 
+            AbstractGameMessage agm = messages.Find(x => x.name == messageName);
+            if (agm != null && agm is GameMessageString) ((GameMessageString)agm).Invoke(text);
         }
     }
 

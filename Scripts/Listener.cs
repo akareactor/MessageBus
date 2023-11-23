@@ -16,6 +16,9 @@ namespace Kulibin.Space.MessageBus {
         public void Message () { if (broadcast != null) broadcast.Invoke(); }
     }
 
+    [System.Serializable]
+	public class StringEvent : UnityEvent<string> {}
+
     [Serializable]
     public class StringEventItem : EventItem {
         [SerializeReference]
@@ -23,7 +26,7 @@ namespace Kulibin.Space.MessageBus {
         public void Message (string s) { if (broadcast != null) broadcast.Invoke(s); }
     }
 
-    // связь слушателя и сообщения
+    // связь слушателя и сообщения надо делать в отдельном классе, т.к. Editor не работает с абстрактным элементом EventItem
     [Serializable]
     public class Entry {
         [SerializeReference]
@@ -58,19 +61,34 @@ namespace Kulibin.Space.MessageBus {
             entries.Add(item);
         }
 
-        void Awake () {
+        void Subscribe (AbstractGameMessage msg, EventItem item) {
+            if (msg is GameMessage) {
+                (msg as GameMessage).Subscribe((item as SignalEventItem).Message);
+            } else if (msg is GameMessageString) {
+                (msg as GameMessageString).Subscribe((item as StringEventItem).Message);
+            }
+        }
+
+        void Unsubscribe (AbstractGameMessage msg, EventItem item) {
+            if (msg is GameMessage) {
+                (msg as GameMessage).Unsubscribe((item as SignalEventItem).Message);
+            } else if (msg is GameMessageString) {
+                (msg as GameMessageString).Unsubscribe((item as StringEventItem).Message);
+            }
+        }
+
+
+        void OnEnable () {
             // регистрация сообщений в базовой шине, в PlayMode
             foreach (Entry item in entries) {
-                if (item.gameMessage is GameMessage) {
-                    GameMessage gm = item.gameMessage as GameMessage;
-                    SignalEventItem eventItem = item.eventItem as SignalEventItem;
-                    gm.Subscribe(eventItem.Message);
-                } else if (item.gameMessage is GameMessageString) {
-                    GameMessageString gm = item.gameMessage as GameMessageString;
-                    StringEventItem eventItem = item.eventItem as StringEventItem;
-                    gm.Subscribe(eventItem.Message);
-                }
-                Magistral.Register(item.gameMessage);
+                Subscribe(item.gameMessage, item.eventItem); // подписать слушателя на делегат сообщения
+                Magistral.Register(item.gameMessage); // зарегаться в магистрали (дерегистрацию нельзя делать, т.к. в сцене могут остаться другие)
+            }
+        }
+
+        void OnDisable () {
+            foreach (Entry item in entries) {
+                Unsubscribe(item.gameMessage, item.eventItem); // подписать слушателя на делегат сообщения
             }
         }
 
