@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 
 // Глобальна¤ шина сообщений
-namespace Kulibin.Space.MessageBus {
+namespace Kulibin.Space.MessageBus.Demo {
 	
 	public static class MessageBus {
 
@@ -14,8 +14,7 @@ namespace Kulibin.Space.MessageBus {
 		public static event EventAction OnRestartMission;
 		public static event EventAction OnExitMission;
 		public static event ObjectAction OnDestroy;
-		public static event TextMessage OnTextMessage;
-		public static event AdvancedMessage OnMessage;
+		public static event StringAction OnTextMessage;
 		public static event BoolAction OnLoadingProgress;
 
 		// Color Lines
@@ -28,7 +27,6 @@ namespace Kulibin.Space.MessageBus {
 		public static void MissionRestart () { if (OnRestartMission != null) OnRestartMission(); }
 		public static void MissionExit () { if (OnExitMission != null) OnExitMission(); }
 		public static void Destroyed (GameObject g) { if (OnDestroy != null) OnDestroy(g);	}
-		public static void AddMessage (TypedMessage m) { if (OnMessage != null) OnMessage(m); }
 		public static void AddMessage (string s) { if (OnTextMessage != null) OnTextMessage(s); }
 
 	}

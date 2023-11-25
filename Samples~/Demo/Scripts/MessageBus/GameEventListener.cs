@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Kulibin.Space.MessageBus {
+namespace Kulibin.Space.MessageBus.Demo {
 
 	public class GameEventListener : MonoBehaviour {
 

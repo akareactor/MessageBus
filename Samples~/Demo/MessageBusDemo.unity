@@ -176,8 +176,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 270078630}
-  - component: {fileID: 270078633}
-  - component: {fileID: 270078632}
   - component: {fileID: 270078634}
   m_Layer: 0
   m_Name: Event listener
@@ -201,60 +199,6 @@ Transform:
   m_Father: {fileID: 1355856172}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &270078632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270078629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5404c19afb197064a826a199af33326c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 11
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
-  delegates: []
---- !u!114 &270078633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270078629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a032788970bab7840b8c7252809dfd57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onGameOver:
-    m_PersistentCalls:
-      m_Calls: []
-  onGameStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onGameContinued:
-    m_PersistentCalls:
-      m_Calls: []
-  onMessage:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 72568523}
-        m_TargetAssemblyTypeName: Kulibin.Space.MessageBusDemo.SimpleLog, MessageBusDemo
-        m_MethodName: Write
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &270078634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +218,9 @@ MonoBehaviour:
   - eventItem:
       rid: 4789732669027778576
     gameMessage: {fileID: 11400000, guid: 5f7c51ebf8192ea4794fb1c01c367e29, type: 2}
+  - eventItem:
+      rid: 4789732714765352972
+    gameMessage: {fileID: 11400000, guid: c5a635bf37b03cb4bb4fd420cb76489e, type: 2}
   references:
     version: 2
     RefIds:
@@ -321,6 +268,16 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+    - rid: 4789732714765352972
+      type: {class: ComponentEventItem, ns: Kulibin.Space.MessageBus, asm: Space.Kulibin.MessageBus}
+      data:
+        broadcast:
+          rid: 4789732714765352973
+    - rid: 4789732714765352973
+      type: {class: ComponentEvent, ns: Kulibin.Space.MessageBus, asm: Space.Kulibin.MessageBus}
+      data:
+        m_PersistentCalls:
+          m_Calls: []
 --- !u!1 &605985653
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,6 +388,7 @@ GameObject:
   - component: {fileID: 748819872}
   - component: {fileID: 748819871}
   - component: {fileID: 748819873}
+  - component: {fileID: 748819874}
   m_Layer: 0
   m_Name: Game event generator
   m_TagString: Untagged
@@ -471,8 +429,9 @@ MonoBehaviour:
   onTimerEndAction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 748819872}
-        m_TargetAssemblyTypeName: AdvancedMessageBus, MessageBusDemo
+      - m_Target: {fileID: 748819874}
+        m_TargetAssemblyTypeName: Kulibin.Space.MessageBus.Demo.CustomMessageBus,
+          MessageBusDemo
         m_MethodName: GameOver
         m_Mode: 1
         m_Arguments:
@@ -495,6 +454,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da3bdd7e91f062a42bb048c9444c3669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  messages:
+  - {fileID: 11400000, guid: 60885c6495f561a4bad2e520693f4f23, type: 2}
+  - {fileID: 11400000, guid: 5f7c51ebf8192ea4794fb1c01c367e29, type: 2}
 --- !u!114 &748819873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,10 +475,10 @@ MonoBehaviour:
   onTimerEndAction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 748819872}
-        m_TargetAssemblyTypeName: Kulibin.Space.MessageBus.Demo.AdvancedMessageBus,
+      - m_Target: {fileID: 748819874}
+        m_TargetAssemblyTypeName: Kulibin.Space.MessageBus.Demo.CustomMessageBus,
           MessageBusDemo
-        m_MethodName: TextMessage
+        m_MethodName: Text
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -526,6 +488,20 @@ MonoBehaviour:
           m_StringArgument: Game Over Text
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &748819874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748819869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cd1aac5c10dc6e4fab49125d196c6ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOver: {fileID: 11400000, guid: 60885c6495f561a4bad2e520693f4f23, type: 2}
+  text: {fileID: 11400000, guid: 5f7c51ebf8192ea4794fb1c01c367e29, type: 2}
 --- !u!1 &890820392
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,7 +662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1401085a83d144d99c10d1dd33c304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gms: {fileID: 0}
+  gms: {fileID: 11400000, guid: 60885c6495f561a4bad2e520693f4f23, type: 2}
 --- !u!1 &1133571601
 GameObject:
   m_ObjectHideFlags: 0
