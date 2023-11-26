@@ -14,7 +14,6 @@ namespace UnityEditor.EventSystems {
         private SerializedProperty bus_prop;
         private SerializedProperty listeners_prop;
         GUIContent m_IconToolbarMinus;
-        GUIContent m_EventIDName;
         GUIContent[] m_EventTypes;
         SerializedObject newserobj;
         SerializedObject entriesobj;
@@ -27,7 +26,6 @@ namespace UnityEditor.EventSystems {
             listeners_prop = serializedObject.FindProperty("_entries");
             listenerComponent = (Listener)target;
             m_AddButonContent = new GUIContent("Add New Message Type");
-            m_EventIDName = new GUIContent("");
             // Have to create a copy since otherwise the tooltip will be overwritten.
             m_IconToolbarMinus = new GUIContent(EditorGUIUtility.IconContent("Toolbar Minus"));
             m_IconToolbarMinus.tooltip = "Remove all events in this list.";
@@ -50,13 +48,12 @@ namespace UnityEditor.EventSystems {
             Vector2 removeButtonSize = GUIStyle.none.CalcSize(m_IconToolbarMinus);
             for (int i = 0; i < listeners_prop.arraySize; ++i) {
                 SerializedProperty delegateProperty = listeners_prop.GetArrayElementAtIndex(i);
-                EditorGUILayout.LabelField(new GUIContent("Слушатель <" + delegateProperty.type + ">"));
                 SerializedProperty eventItemProperty = delegateProperty.FindPropertyRelative("eventItem");
                 if (eventItemProperty != null) {
                     SerializedProperty callbacksProperty = eventItemProperty.FindPropertyRelative("broadcast");
                     if (callbacksProperty != null) {
-                        m_EventIDName.text = agm[i].name;
-                        EditorGUILayout.PropertyField(callbacksProperty, m_EventIDName);
+                        SerializedProperty messageProperty = delegateProperty.FindPropertyRelative("gameMessage");
+                        EditorGUILayout.PropertyField(callbacksProperty, new GUIContent(messageProperty.objectReferenceValue.name));
                     } else {
                         EditorGUILayout.LabelField(new GUIContent("callbacksProperty null"));
                     }
@@ -92,7 +89,20 @@ namespace UnityEditor.EventSystems {
             // Now create the menu, add items and show it
             GenericMenu menu = new GenericMenu();
             for (int i = 0; i < m_EventTypes.Length; ++i) {
-                menu.AddItem(m_EventTypes[i], false, OnAddNewSelected, i); // та самая оптимизация, не создавать каждый раз экземпляр элемента меню
+                bool active = true;
+                // охрана от дубликата, ведь нет смысла добавлять дважды одно событие
+                for (int p = 0; p < listeners_prop.arraySize; ++p) {
+                    SerializedProperty delegateEntry = listeners_prop.GetArrayElementAtIndex(p);
+                    SerializedProperty messageProperty = delegateEntry.FindPropertyRelative("gameMessage");
+                    if (messageProperty.objectReferenceValue == agm[i]) {
+                        active = false;
+                    }
+                }
+                if (active)
+                    menu.AddItem(m_EventTypes[i], false, OnAddNewSelected, i); // та самая оптимизация, не создавать каждый раз экземпляр элемента меню
+                else
+                    menu.AddDisabledItem(m_EventTypes[i]);
+
             }
             menu.ShowAsContext();
             Event.current.Use();

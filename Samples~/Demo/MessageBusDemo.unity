@@ -176,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 270078630}
-  - component: {fileID: 270078634}
+  - component: {fileID: 270078631}
   m_Layer: 0
   m_Name: Event listener
   m_TagString: Untagged
@@ -199,7 +199,7 @@ Transform:
   m_Father: {fileID: 1355856172}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &270078634
+--- !u!114 &270078631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -211,73 +211,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57552bd38a3e59e499736b63665801ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entries:
-  - eventItem:
-      rid: 4789732669027778562
-    gameMessage: {fileID: 11400000, guid: 60885c6495f561a4bad2e520693f4f23, type: 2}
-  - eventItem:
-      rid: 4789732669027778576
-    gameMessage: {fileID: 11400000, guid: 5f7c51ebf8192ea4794fb1c01c367e29, type: 2}
-  - eventItem:
-      rid: 4789732714765352972
-    gameMessage: {fileID: 11400000, guid: c5a635bf37b03cb4bb4fd420cb76489e, type: 2}
+  _entries: []
   references:
     version: 2
-    RefIds:
-    - rid: 4789732669027778562
-      type: {class: SignalEventItem, ns: Kulibin.Space.MessageBus, asm: Space.Kulibin.MessageBus}
-      data:
-        broadcast:
-          rid: 4789732669027778563
-    - rid: 4789732669027778563
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 72568523}
-            m_TargetAssemblyTypeName: Kulibin.Space.MessageBusDemo.SimpleLog, MessageBusDemo
-            m_MethodName: Write
-            m_Mode: 5
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: Game Over
-              m_BoolArgument: 0
-            m_CallState: 2
-    - rid: 4789732669027778576
-      type: {class: StringEventItem, ns: Kulibin.Space.MessageBus, asm: Space.Kulibin.MessageBus}
-      data:
-        broadcast:
-          rid: 4789732669027778577
-    - rid: 4789732669027778577
-      type: {class: StringEvent, ns: Kulibin.Space.MessageBus, asm: Space.Kulibin.MessageBus}
-      data:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 72568523}
-            m_TargetAssemblyTypeName: Kulibin.Space.MessageBusDemo.SimpleLog, MessageBusDemo
-            m_MethodName: Write
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    - rid: 4789732714765352972
-      type: {class: ComponentEventItem, ns: Kulibin.Space.MessageBus, asm: Space.Kulibin.MessageBus}
-      data:
-        broadcast:
-          rid: 4789732714765352973
-    - rid: 4789732714765352973
-      type: {class: ComponentEvent, ns: Kulibin.Space.MessageBus, asm: Space.Kulibin.MessageBus}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    RefIds: []
 --- !u!1 &605985653
 GameObject:
   m_ObjectHideFlags: 0
