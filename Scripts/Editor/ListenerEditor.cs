@@ -7,9 +7,9 @@ using Codice.Client.Common;
 using Codice.Client.Common.GameUI;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using Kulibin.Space.MessageBus;
+using UnityEditor;
 
-namespace UnityEditor.EventSystems {
+namespace Kulibin.Space.MessageBus {
 
     [CustomEditor(typeof(Listener), true)]
     public class ListenerEditor : Editor {
