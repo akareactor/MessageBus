@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using System;
 using System.Reflection;
 using System.Collections.Generic;
@@ -117,3 +119,5 @@ namespace UnityEditor.EventSystems {
     }
 
 }
+
+#endif
