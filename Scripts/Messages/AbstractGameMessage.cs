@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEditor;
 using System.Reflection;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Kulibin.Space.MessageBus {
 
     public abstract class AbstractGameMessage : ScriptableObject {
+ 
+#if UNITY_EDITOR
 
         public static AbstractGameMessage[] GetAllInstances () {
             string[] guids = AssetDatabase.FindAssets("t:" + typeof(AbstractGameMessage).Name); //FindAssets uses tags check documentation for more info
@@ -16,6 +20,8 @@ namespace Kulibin.Space.MessageBus {
             }
         return a;
         }
+
+#endif
 
     }
 

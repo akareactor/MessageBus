@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
-using UnityEditor.VersionControl;
 
 namespace Kulibin.Space.MessageBus {
 
@@ -175,7 +174,6 @@ namespace Kulibin.Space.MessageBus {
         }
 
         void OnEnable () {
-            // регистрация сообщений в базовой шине, в PlayMode
             foreach (Entry item in entries) {
                 Subscribe(item.gameMessage, item.eventItem); // подписать слушателя на делегат сообщения
             }
