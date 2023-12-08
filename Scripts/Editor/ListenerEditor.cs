@@ -55,7 +55,11 @@ namespace Kulibin.Space.MessageBus {
                     SerializedProperty callbacksProperty = eventItemProperty.FindPropertyRelative("broadcast");
                     if (callbacksProperty != null) {
                         SerializedProperty messageProperty = delegateProperty.FindPropertyRelative("gameMessage");
-                        EditorGUILayout.PropertyField(callbacksProperty, new GUIContent(messageProperty.objectReferenceValue.name));
+                        if (messageProperty != null && messageProperty.objectReferenceValue != null) {
+                            EditorGUILayout.PropertyField(callbacksProperty, new GUIContent(messageProperty.objectReferenceValue.name));
+                        } else {
+                            EditorGUILayout.LabelField(new GUIContent("Missing " + messageProperty.name + " asset! Just remove this item."));
+                        }
                     } else {
                         EditorGUILayout.LabelField(new GUIContent("callbacksProperty null"));
                     }
