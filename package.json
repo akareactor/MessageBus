@@ -1,7 +1,7 @@
 {
 	"name": "space.kulibin.messagebus",
 	"version": "1.0.0",
-	"displayName": "Kulibin Message Bus",
+	"displayName": "Message Bus",
 	"description": "This is a simple messaging facility, based on UnityEvents.",
 	"author": {
 		"name": "Kulibin.Space",
