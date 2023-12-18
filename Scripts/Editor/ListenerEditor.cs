@@ -42,6 +42,8 @@ namespace Kulibin.Space.MessageBus {
 
         public override void OnInspectorGUI() {
             this.serializedObject.Update(); //serializedObject.UpdateIfRequiredOrScript();
+            // subscribe flag
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("subscribeOnEnable"), new GUIContent("Subscribe on enable"));
             // отладочный список
             //EditorGUILayout.PropertyField(serializedObject.FindProperty("_entries"), new GUIContent("Entries"));
             // список слушателей

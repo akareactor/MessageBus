@@ -218,6 +218,7 @@ MonoBehaviour:
   - eventItem:
       rid: 4789732737671233540
     gameMessage: {fileID: 11400000, guid: 60885c6495f561a4bad2e520693f4f23, type: 2}
+  subscribeOnEnable: 1
   references:
     version: 2
     RefIds:
@@ -441,9 +442,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da3bdd7e91f062a42bb048c9444c3669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages:
-  - {fileID: 11400000, guid: 60885c6495f561a4bad2e520693f4f23, type: 2}
-  - {fileID: 11400000, guid: 5f7c51ebf8192ea4794fb1c01c367e29, type: 2}
 --- !u!114 &748819873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +487,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOver: {fileID: 11400000, guid: 60885c6495f561a4bad2e520693f4f23, type: 2}
   text: {fileID: 11400000, guid: 5f7c51ebf8192ea4794fb1c01c367e29, type: 2}
+  progress: {fileID: 0}
+  number: {fileID: 0}
+  flag: {fileID: 0}
+  gobj: {fileID: 0}
+  component: {fileID: 0}
 --- !u!1 &890820392
 GameObject:
   m_ObjectHideFlags: 0
