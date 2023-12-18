@@ -106,6 +106,9 @@ namespace Kulibin.Space.MessageBus {
         [SerializeField]
         private List<Entry> _entries;
 
+        public bool subscribeOnEnable = true;
+        private bool subscribed = false;
+
         public List<Entry> entries {
             get {
                 if (_entries == null) _entries = new List<Entry>();
@@ -132,7 +135,7 @@ namespace Kulibin.Space.MessageBus {
             else if (gameMessage is GameMessageComponent)
                 item.eventItem = new ComponentEventItem();
             else
-                Debug.Log("Не удалось определить тип!");
+                Debug.Log("Cannot detect message type!");
             item.gameMessage = gameMessage;
             entries.Add(item);
         }
@@ -173,16 +176,30 @@ namespace Kulibin.Space.MessageBus {
             }
         }
 
-        void OnEnable () {
-            foreach (Entry item in entries) {
-                Subscribe(item.gameMessage, item.eventItem); // подписать слушателя на делегат сообщения
+        public void Subscribe () {
+            if (!subscribed) {
+                foreach (Entry item in entries) {
+                    Subscribe(item.gameMessage, item.eventItem); // подписать слушателя на делегат сообщения
+                }
+                subscribed = true;
             }
         }
 
-        void OnDisable () {
-            foreach (Entry item in entries) {
-                Unsubscribe(item.gameMessage, item.eventItem); // подписать слушателя на делегат сообщения
+        public void Unsubscribe () {
+            if (subscribed) {
+                foreach (Entry item in entries) {
+                    Unsubscribe(item.gameMessage, item.eventItem); // отписать слушателя от делегата сообщения
+                }
+                subscribed = false;
             }
+        }
+
+        void OnEnable () {
+            if (subscribeOnEnable) Subscribe();
+        }
+
+        void OnDisable () {
+            Unsubscribe();
         }
 
     }
