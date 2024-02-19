@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 
 // Глобальна¤ шина сообщений
-namespace Kulibin.Space.MessageBus.Demo {
+namespace KulibinSpace.MessageBus.Demo {
 	
 	public static class MessageBus {
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Kulibin.Space.MessageBusDemo {
+namespace KulibinSpace.MessageBusDemo {
 
 	public class SimpleLog : MonoBehaviour {
 

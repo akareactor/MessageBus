@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEditor;
 
-namespace Kulibin.Space.MessageBus {
+namespace KulibinSpace.MessageBus {
 
     [CustomEditor(typeof(Listener), true)]
     public class ListenerEditor : Editor {

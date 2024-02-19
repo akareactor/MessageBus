@@ -5,7 +5,7 @@ using System.Reflection;
 using UnityEditor;
 #endif
 
-namespace Kulibin.Space.MessageBus {
+namespace KulibinSpace.MessageBus {
 
     public abstract class AbstractGameMessage : ScriptableObject {
  

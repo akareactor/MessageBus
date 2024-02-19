@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Kulibin.Space.MessageBus.Demo {
+namespace KulibinSpace.MessageBus.Demo {
 
 	public class CollisionControl : MonoBehaviour {
 

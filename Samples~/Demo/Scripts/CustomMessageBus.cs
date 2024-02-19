@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Kulibin.Space.MessageBus.Demo {
+namespace KulibinSpace.MessageBus.Demo {
 
     // Place it on the scene
     // Предметный глобальный клиентский широковещатель. Реализуется на стороне клиента, потому что сообщения идентифицируются по имени скриптуемого объекта, а это вне ответственности компилятора.

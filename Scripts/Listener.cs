@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 
-namespace Kulibin.Space.MessageBus {
+namespace KulibinSpace.MessageBus {
 
     // Была идея сделать абстрактное поле broadcast и абстрактный Message, чтобы полиморфно подписываться, но пока тупо не знаю, как.
     public abstract class EventItem {}

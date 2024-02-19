@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Kulibin.Space.MessageBus {
+namespace KulibinSpace.MessageBus {
 
     public delegate void IntAction (int val);
 

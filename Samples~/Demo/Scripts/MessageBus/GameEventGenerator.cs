@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
-namespace Kulibin.Space.MessageBus.Demo {
+namespace KulibinSpace.MessageBus.Demo {
 
 	// ПРОГРАММИРОВАНИЕ БЕЗ ПРОГРАММИРОВАНИЯ
 	// GameEventListener слушает события в игре и дёргает соответствующие события у себя. Легко настроить действия в инспекторе.
