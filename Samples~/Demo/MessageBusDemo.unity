@@ -223,17 +223,17 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 4789732737671233538
-      type: {class: StringEventItem, ns: Kulibin.Space.MessageBus, asm: Space.Kulibin.MessageBus}
+      type: {class: StringEventItem, ns: KulibinSpace.MessageBus, asm: Space.Kulibin.MessageBus}
       data:
         broadcast:
           rid: 4789732737671233539
     - rid: 4789732737671233539
-      type: {class: StringEvent, ns: Kulibin.Space.MessageBus, asm: Space.Kulibin.MessageBus}
+      type: {class: StringEvent, ns: KulibinSpace.MessageBus, asm: Space.Kulibin.MessageBus}
       data:
         m_PersistentCalls:
           m_Calls:
           - m_Target: {fileID: 72568523}
-            m_TargetAssemblyTypeName: Kulibin.Space.MessageBusDemo.SimpleLog, MessageBusDemo
+            m_TargetAssemblyTypeName: KulibinSpace.MessageBusDemo.SimpleLog, MessageBusDemo
             m_MethodName: Write
             m_Mode: 0
             m_Arguments:
@@ -245,17 +245,17 @@ MonoBehaviour:
               m_BoolArgument: 0
             m_CallState: 2
     - rid: 4789732737671233540
-      type: {class: SignalEventItem, ns: Kulibin.Space.MessageBus, asm: Space.Kulibin.MessageBus}
+      type: {class: SignalEventItem, ns: KulibinSpace.MessageBus, asm: Space.Kulibin.MessageBus}
       data:
         broadcast:
           rid: 4789732737671233541
     - rid: 4789732737671233541
-      type: {class: SignalEvent, ns: Kulibin.Space.MessageBus, asm: Space.Kulibin.MessageBus}
+      type: {class: SignalEvent, ns: KulibinSpace.MessageBus, asm: Space.Kulibin.MessageBus}
       data:
         m_PersistentCalls:
           m_Calls:
           - m_Target: {fileID: 72568523}
-            m_TargetAssemblyTypeName: Kulibin.Space.MessageBusDemo.SimpleLog, MessageBusDemo
+            m_TargetAssemblyTypeName: KulibinSpace.MessageBusDemo.SimpleLog, MessageBusDemo
             m_MethodName: Write
             m_Mode: 5
             m_Arguments:
@@ -418,7 +418,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 748819874}
-        m_TargetAssemblyTypeName: Kulibin.Space.MessageBus.Demo.CustomMessageBus,
+        m_TargetAssemblyTypeName: KulibinSpace.MessageBus.Demo.CustomMessageBus,
           MessageBusDemo
         m_MethodName: GameOver
         m_Mode: 1
@@ -461,7 +461,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 748819874}
-        m_TargetAssemblyTypeName: Kulibin.Space.MessageBus.Demo.CustomMessageBus,
+        m_TargetAssemblyTypeName: KulibinSpace.MessageBus.Demo.CustomMessageBus,
           MessageBusDemo
         m_MethodName: Text
         m_Mode: 5

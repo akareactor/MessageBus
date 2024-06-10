@@ -6,7 +6,7 @@ using UnityEngine.Events;
 namespace KulibinSpace.MessageBus.Demo {
 
 	public class GameEventListener : MonoBehaviour {
-
+ 
 		public UnityEvent onGameOver;
 		public UnityEvent onGameStart;
 		public UnityEvent onGameContinued;
