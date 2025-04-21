@@ -3,8 +3,6 @@
 using System;
 using System.Reflection;
 using System.Collections.Generic;
-using Codice.Client.Common;
-using Codice.Client.Common.GameUI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEditor;
