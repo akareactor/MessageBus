@@ -10,6 +10,12 @@ namespace KulibinSpace.MessageBusDemo {
 			print(s);
 		}
 
+        public void Write (ScriptableObject so) {
+            if (so != null && so is ScriptableContainer sc) {
+                print(so.name + ", " + sc.content);
+            }
+        }
+
 	}
 
 }

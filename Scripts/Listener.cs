@@ -17,7 +17,7 @@ namespace KulibinSpace.MessageBus {
     public class SignalEventItem : EventItem {
         [SerializeReference]
         public UnityEvent broadcast = new SignalEvent();
-        public void Message () { if (broadcast != null) broadcast.Invoke(); }
+        public void Message () { broadcast?.Invoke(); }
     }
 
     /*********************** STRING SIGNAL **********************/
@@ -28,8 +28,8 @@ namespace KulibinSpace.MessageBus {
     [Serializable]
     public class StringEventItem : EventItem {
         [SerializeReference]
-        public StringEvent broadcast = new StringEvent();
-        public void Message (string s) { if (broadcast != null) broadcast.Invoke(s); }
+        public StringEvent broadcast = new();
+        public void Message (string s) { broadcast?.Invoke(s); }
     }
 
     /*********************** INT SIGNAL **********************/
@@ -40,8 +40,8 @@ namespace KulibinSpace.MessageBus {
     [Serializable]
     public class IntEventItem : EventItem {
         [SerializeReference]
-        public IntEvent broadcast = new IntEvent();
-        public void Message (int num) { if (broadcast != null) broadcast.Invoke(num); }
+        public IntEvent broadcast = new();
+        public void Message (int num) { broadcast?.Invoke(num); }
     }
 
     /*********************** BOOL SIGNAL **********************/
@@ -52,8 +52,8 @@ namespace KulibinSpace.MessageBus {
     [Serializable]
     public class BoolEventItem : EventItem {
         [SerializeReference]
-        public BoolEvent broadcast = new BoolEvent();
-        public void Message (bool b) { if (broadcast != null) broadcast.Invoke(b); }
+        public BoolEvent broadcast = new();
+        public void Message (bool b) => broadcast?.Invoke(b);
     }
 
     /*********************** FLOAT SIGNAL **********************/
@@ -64,8 +64,8 @@ namespace KulibinSpace.MessageBus {
     [Serializable]
     public class FloatEventItem : EventItem {
         [SerializeReference]
-        public FloatEvent broadcast = new FloatEvent();
-        public void Message (float f) { if (broadcast != null) broadcast.Invoke(f); }
+        public FloatEvent broadcast = new();
+        public void Message (float f) => broadcast?.Invoke(f);
     }
 
     /*********************** OBJECT SIGNAL **********************/
@@ -76,8 +76,20 @@ namespace KulibinSpace.MessageBus {
     [Serializable]
     public class ObjectEventItem : EventItem {
         [SerializeReference]
-        public ObjectEvent broadcast = new ObjectEvent();
-        public void Message (GameObject go) { if (broadcast != null) broadcast.Invoke(go); }
+        public ObjectEvent broadcast = new();
+        public void Message (GameObject go) => broadcast?.Invoke(go);
+    }
+
+    /*********************** SCRIPTABLE OBJECT SIGNAL **********************/
+
+    [System.Serializable]
+	public class ScriptableObjectEvent : UnityEvent<ScriptableObject> {}
+
+    [Serializable]
+    public class ScriptableObjectEventItem : EventItem {
+        [SerializeReference]
+        public ScriptableObjectEvent broadcast = new();
+        public void Message (ScriptableObject so) => broadcast?.Invoke(so);
     }
 
     /*********************** COMPONENT SIGNAL **********************/
@@ -88,8 +100,8 @@ namespace KulibinSpace.MessageBus {
     [Serializable]
     public class ComponentEventItem : EventItem {
         [SerializeReference]
-        public ComponentEvent broadcast = new ComponentEvent();
-        public void Message (MonoBehaviour mb) { if (broadcast != null) broadcast.Invoke(mb); }
+        public ComponentEvent broadcast = new();
+        public void Message (MonoBehaviour mb) => broadcast?.Invoke(mb);
     }
 
     // связь слушателя и сообщения надо делать в отдельном классе, т.к. Editor не работает с абстрактным элементом EventItem
@@ -110,33 +122,32 @@ namespace KulibinSpace.MessageBus {
         private bool subscribed = false;
 
         public List<Entry> entries {
-            get {
-                if (_entries == null) _entries = new List<Entry>();
-                return _entries;
-            }
+            get { _entries ??= new List<Entry>(); return _entries; }
             set { _entries = value; }
         }
 
         // сначала хотел сделать это в редакторе ListenerEditor, но отпугнула сложность рефлексии. Так оказалось проще.
-        public void AddEntry (AbstractGameMessage gameMessage) {
+        public void AddEntry (AbstractGameMessage msg) {
             Entry item = new Entry();
-            if (gameMessage is GameMessage)
+            if (msg is GameMessage)
                 item.eventItem = new SignalEventItem();
-            else if (gameMessage is GameMessageString)
+            else if (msg is GameMessageString)
                 item.eventItem = new StringEventItem();
-            else if (gameMessage is GameMessageInt)
+            else if (msg is GameMessageInt)
                 item.eventItem = new IntEventItem();
-            else if (gameMessage is GameMessageFloat)
+            else if (msg is GameMessageFloat)
                 item.eventItem = new FloatEventItem();
-            else if (gameMessage is GameMessageBool)
+            else if (msg is GameMessageBool)
                 item.eventItem = new BoolEventItem();
-            else if (gameMessage is GameMessageObject)
+            else if (msg is GameMessageObject)
                 item.eventItem = new ObjectEventItem();
-            else if (gameMessage is GameMessageComponent)
+            else if (msg is GameMessageComponent)
                 item.eventItem = new ComponentEventItem();
+            else if (msg is GameMessageScriptableObject)
+                item.eventItem = new ScriptableObjectEventItem();
             else
                 Debug.Log("Cannot detect message type!");
-            item.gameMessage = gameMessage;
+            item.gameMessage = msg;
             entries.Add(item);
         }
 
@@ -155,6 +166,8 @@ namespace KulibinSpace.MessageBus {
                 (msg as GameMessageObject).message += (item as ObjectEventItem).Message;
             } else if (msg is GameMessageComponent) {
                 (msg as GameMessageComponent).message += (item as ComponentEventItem).Message;
+            } else if (msg is GameMessageScriptableObject) {
+                (msg as GameMessageScriptableObject).message += (item as ScriptableObjectEventItem).Message;
             }
         }
 
@@ -173,6 +186,8 @@ namespace KulibinSpace.MessageBus {
                 (msg as GameMessageObject).message -= (item as ObjectEventItem).Message;
             } else if (msg is GameMessageComponent) {
                 (msg as GameMessageComponent).message -= (item as ComponentEventItem).Message;
+            } else if (msg is GameMessageScriptableObject) {
+                (msg as GameMessageScriptableObject).message -= (item as ScriptableObjectEventItem).Message;
             }
         }
 
