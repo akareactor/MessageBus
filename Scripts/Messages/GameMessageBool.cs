@@ -4,7 +4,7 @@ namespace KulibinSpace.MessageBus {
 
     public delegate void BoolAction (bool flag);
 
-    [CreateAssetMenu(fileName = "Bool message", menuName = "Kulibin Space/Scriptable Objects/Messages/Bool message")]
+    [CreateAssetMenu(fileName = "Bool message", menuName = "Kulibin Space/MessageBus/Messages/Bool message")]
     public class GameMessageBool : AbstractGameMessage {
 
         public event BoolAction message;

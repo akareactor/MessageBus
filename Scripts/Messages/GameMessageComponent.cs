@@ -4,7 +4,7 @@ namespace KulibinSpace.MessageBus {
 
     public delegate void ComponentAction (MonoBehaviour mb);
 
-    [CreateAssetMenu(fileName = "Component message", menuName = "Kulibin Space/Scriptable Objects/Messages/Component message")]
+    [CreateAssetMenu(fileName = "Component message", menuName = "Kulibin Space/MessageBus/Messages/Component message")]
     public class GameMessageComponent : AbstractGameMessage {
 
         public event ComponentAction message;
