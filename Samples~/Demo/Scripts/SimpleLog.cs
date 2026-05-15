@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using KulibinSpace.MessageBus.Demo;
 using UnityEngine;
 
 namespace KulibinSpace.MessageBusDemo {
@@ -14,6 +15,10 @@ namespace KulibinSpace.MessageBusDemo {
             if (so != null && so is ScriptableContainer sc) {
                 print(so.name + ", " + sc.content);
             }
+        }
+
+        public void Write (Hit hit) {
+            print(hit.damage);
         }
 
 	}

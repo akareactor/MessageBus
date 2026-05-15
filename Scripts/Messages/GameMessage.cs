@@ -2,9 +2,11 @@ using UnityEngine;
 
 namespace KulibinSpace.MessageBus { 
 
-    public delegate void EventAction ();
+    //public delegate void EventAction ();
 
     [CreateAssetMenu(fileName = "Message object", menuName = "Kulibin Space/MessageBus/Messages/Message object")]
+    public class GameMessage : AbstractMessage {}
+/*
     public class GameMessage : AbstractGameMessage {
 
         public event EventAction message;
@@ -14,5 +16,5 @@ namespace KulibinSpace.MessageBus {
         }
 
     }
-
+*/
 }
