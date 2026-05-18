@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace KulibinSpace.MessageBus {
 
@@ -7,9 +6,7 @@ namespace KulibinSpace.MessageBus {
         void Invoke();
     }
 
-    public abstract class AbstractMessage :
-        AbstractGameMessage,
-        IMessage {
+    public abstract class AbstractMessage : AbstractGameMessage, IMessage {
 
         public event Action Event;
 
