@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 
 namespace KulibinSpace.MessageBus {
 
@@ -11,7 +15,7 @@ namespace KulibinSpace.MessageBus {
     [Serializable] public class ScriptableObjectEventItem : EventItem<ScriptableObject> { }
     [Serializable] public class ComponentEventItem : EventItem<MonoBehaviour> { }
     [Serializable] public class ObjectEventItem : EventItem<GameObject> { }
-    
+
     // связь слушателя и сообщения надо делать в отдельном классе, т.к. Editor не работает с абстрактным элементом EventItem
     [Serializable]
     public class Entry {
@@ -34,25 +38,28 @@ namespace KulibinSpace.MessageBus {
             set { _entries = value; }
         }
 
-        public void AddEntry (AbstractGameMessage msg) {
-            Entry item = new();
-            Type type = msg.GetType();
-            while (type != null) {
-                if (type.IsGenericType &&
-                   type.GetGenericTypeDefinition() == typeof(AbstractMessage<>)) {
-                    Type payloadType = type.GetGenericArguments()[0];
-                    item.eventItem = EventItemRegistry.Create(payloadType);
-                    break;
-                }
-                type = type.BaseType;
-            }
-            if (item.eventItem == null) {
-                Debug.LogError($"Cannot create EventItem for {msg.GetType()}");
-                return;
-            }
-            item.gameMessage = msg;
-            entries.Add(item);
+
+#if UNITY_EDITOR
+public void AddEntry (AbstractGameMessage msg) {
+    Entry item = new();
+    Type type = msg.GetType();
+    while (type != null) {
+        if (type.IsGenericType &&
+           type.GetGenericTypeDefinition() == typeof(AbstractMessage<>)) {
+            Type payloadType = type.GetGenericArguments()[0];
+            item.eventItem = EventItemRegistry.Create(payloadType);
+            break;
         }
+        type = type.BaseType;
+    }
+    if (item.eventItem == null) {
+        Debug.LogError($"Cannot create EventItem for {msg.GetType()}");
+        return;
+    }
+    item.gameMessage = msg;
+    entries.Add(item);
+}
+#endif
 
         public void Subscribe () {
             if (subscribed) return;
