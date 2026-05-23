@@ -40,25 +40,39 @@ namespace KulibinSpace.MessageBus {
 
 
 #if UNITY_EDITOR
-public void AddEntry (AbstractGameMessage msg) {
-    Entry item = new();
-    Type type = msg.GetType();
-    while (type != null) {
-        if (type.IsGenericType &&
-           type.GetGenericTypeDefinition() == typeof(AbstractMessage<>)) {
-            Type payloadType = type.GetGenericArguments()[0];
-            item.eventItem = EventItemRegistry.Create(payloadType);
-            break;
+        public void AddEntry (AbstractGameMessage msg) {
+            Entry item = new();
+
+            Type type = msg.GetType();
+
+            while (type != null) {
+
+                // Payload message
+                if (type.IsGenericType &&
+                   type.GetGenericTypeDefinition() == typeof(AbstractMessage<>)) {
+
+                    Type payloadType = type.GetGenericArguments()[0];
+                    item.eventItem = EventItemRegistry.Create(payloadType);
+                    break;
+                }
+
+                // Void message
+                if (type == typeof(AbstractMessage)) {
+                    item.eventItem = new VoidEventItem();
+                    break;
+                }
+
+                type = type.BaseType;
+            }
+
+            if (item.eventItem == null) {
+                Debug.LogError($"Cannot create EventItem for {msg.GetType()}");
+                return;
+            }
+
+            item.gameMessage = msg;
+            entries.Add(item);
         }
-        type = type.BaseType;
-    }
-    if (item.eventItem == null) {
-        Debug.LogError($"Cannot create EventItem for {msg.GetType()}");
-        return;
-    }
-    item.gameMessage = msg;
-    entries.Add(item);
-}
 #endif
 
         public void Subscribe () {

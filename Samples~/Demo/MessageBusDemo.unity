@@ -224,6 +224,9 @@ MonoBehaviour:
   - eventItem:
       rid: 6342209920955056133
     gameMessage: {fileID: 11400000, guid: 5864ee6d049841b4786d0f81a78777cf, type: 2}
+  - eventItem:
+      rid: 6342210100526841858
+    gameMessage: {fileID: 11400000, guid: f16a10b9c1bb322499287551efb92a92, type: 2}
   subscribeOnEnable: 1
   references:
     version: 2
@@ -278,6 +281,24 @@ MonoBehaviour:
                 m_IntArgument: 0
                 m_FloatArgument: 0
                 m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 6342210100526841858
+      type: {class: VoidEventItem, ns: KulibinSpace.MessageBus, asm: Space.Kulibin.MessageBus}
+      data:
+        broadcast:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 72568523}
+              m_TargetAssemblyTypeName: KulibinSpace.MessageBusDemo.SimpleLog, MessageBusDemo
+              m_MethodName: Write
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: Empty message
                 m_BoolArgument: 0
               m_CallState: 2
 --- !u!1 &605985653
@@ -468,6 +489,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 2a675684a38700d4a8f2602fc242b43d, type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.ScriptableObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Game Over Text
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: f16a10b9c1bb322499287551efb92a92, type: 2}
+        m_TargetAssemblyTypeName: KulibinSpace.MessageBus.AbstractMessage, Space.Kulibin.MessageBus
+        m_MethodName: Invoke
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Game Over Text
